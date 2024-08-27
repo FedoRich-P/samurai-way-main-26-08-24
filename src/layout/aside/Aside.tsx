@@ -7,19 +7,19 @@ export const Aside = (props: Props) => {
             <nav>
                 <ul className={s.navList}>
                     <li>
-                        <a href="#">Profile</a>
+                        <a className={`${s.asideLink} ${s.active}`} href="#">Profile</a>
                     </li>
                     <li>
-                        <a href="#">Messages</a>
+                        <a className={s.asideLink} href="#">Messages</a>
                     </li>
                     <li>
-                        <a href="#">News</a>
+                        <a className={s.asideLink} href="#">News</a>
                     </li>
                     <li>
-                        <a href="#">Music</a>
+                        <a className={s.asideLink} href="#">Music</a>
                     </li>
                 </ul>
-                <a href="#">Settings</a>
+                <a className={s.asideLink} href="#">Settings</a>
             </nav>
         </aside>
     );
