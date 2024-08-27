@@ -1,7 +1,6 @@
-type Props = {
+import './Header.css'
 
-};
-export const Header = (props: Props) => {
+export const Header = () => {
     return (
         <header className={'header'}>
             <h1>Socials</h1>

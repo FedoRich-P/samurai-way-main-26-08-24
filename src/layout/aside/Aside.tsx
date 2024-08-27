@@ -1,9 +1,11 @@
+import s from './Aside.module.css'
+
 type Props = {};
 export const Aside = (props: Props) => {
     return (
-        <aside className={'aside'}>
+        <aside className={s.aside}>
             <nav>
-                <ul className={'nav-list'}>
+                <ul className={s.navList}>
                     <li>
                         <a href="#">Profile</a>
                     </li>
