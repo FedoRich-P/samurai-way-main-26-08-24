@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import {Header} from "./layout/header/Header";
 import {Aside} from "./layout/aside/Aside";
-import {Main} from "./layout/main/Main";
+import {Dialogs} from "./layout/dialogs/Dialogs";
+import {Profile} from "./layout/profile/Profile";
 
 function App() {
     return (
@@ -10,7 +11,11 @@ function App() {
             <div className={'app-wrapper'}>
                 <Header/>
                 <Aside/>
-                <Main/>
+
+                <main className="main">
+                    <Profile/>
+                    {/*<Dialogs/>*/}
+                </main>
             </div>
         </div>
     );

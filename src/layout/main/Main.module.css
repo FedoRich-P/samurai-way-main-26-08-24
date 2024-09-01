@@ -1,8 +1,0 @@
-.main {
-    grid-column: 2 / -1;
-    grid-row: 2 / -1;
-    padding: 20px;
-    background-color: #6c9090;
-    border-radius: 0 10px 10px 0;
-    text-align: center;
-}

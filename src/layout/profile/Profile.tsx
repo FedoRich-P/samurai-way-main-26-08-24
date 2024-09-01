@@ -1,4 +1,5 @@
 import s from './Profile.module.css'
+import {MyPosts} from "./myPosts/MyPosts";
 
 type Props = {};
 export const Profile = (props: Props) => {
@@ -34,14 +35,7 @@ export const Profile = (props: Props) => {
                     </li>
                 </ul>
             </article>
-            <div>
-                <h2>My posts</h2>
-                <h3>New post</h3>
-                <ul>
-                    <li>Post 1</li>
-                    <li>Post 2</li>
-                </ul>
-            </div>
+         <MyPosts/>
         </>
     );
 };
