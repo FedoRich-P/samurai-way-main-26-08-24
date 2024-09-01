@@ -1,0 +1,9 @@
+.dialogsNames {
+    padding: 15px;
+    text-align: end;
+}
+
+.dialogsNames li {
+    margin-bottom: 10px;
+    font-weight: bold;
+}

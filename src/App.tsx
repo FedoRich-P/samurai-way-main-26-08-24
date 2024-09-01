@@ -1,23 +1,35 @@
 import React from 'react';
 import './App.css';
 import {Header} from "./layout/header/Header";
-import {Aside} from "./layout/aside/Aside";
+import {Navbar} from "./layout/aside/Navbar";
 import {Dialogs} from "./layout/dialogs/Dialogs";
 import {Profile} from "./layout/profile/Profile";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {News} from "./layout/News/News";
+import {Settings} from "./layout/settings/Settings";
+import {Music} from "./layout/Music/Music";
 
 function App() {
     return (
-        <div className={'container'}>
-            <div className={'app-wrapper'}>
-                <Header/>
-                <Aside/>
-
-                <main className="main">
-                    <Profile/>
-                    {/*<Dialogs/>*/}
-                </main>
+        <BrowserRouter>
+            <div className={'container'}>
+                <div className={'app-wrapper'}>
+                    <Header/>
+                    <Navbar/>
+                    <main className="main">
+                        <Routes>
+                            <Route path={'/profile'} element={<Profile/>}/>
+                            <Route path={'/dialogs/*'} element={<Dialogs/>}/>
+                            <Route path={'/news'} element={<News/>}/>
+                            <Route path={'/music'} element={<Music/>}/>
+                            <Route path={'/settings'} element={<Settings/>}/>
+                        </Routes>
+                        {/*<Profile/>*/}
+                        {/*<Dialogs/>*/}
+                    </main>
+                </div>
             </div>
-        </div>
+        </BrowserRouter>
     );
 }
 
