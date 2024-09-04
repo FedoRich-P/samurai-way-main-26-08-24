@@ -1,13 +1,6 @@
 import s from './ProfileInfo.module.css'
+import {ProfileInfoPropsType} from "../../../redux/state";
 
-type ProfileInfoPropsType = {
-    src: string;
-    name: string;
-    birthDate: string;
-    city: string;
-    education: string;
-    website: string;
-};
 export const ProfileInfo = (props: ProfileInfoPropsType) => {
     const {
         src, name, birthDate, city, education, website,

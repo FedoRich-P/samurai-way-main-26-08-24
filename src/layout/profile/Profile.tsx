@@ -1,28 +1,19 @@
-import s from './Profile.module.css'
 import {MyPosts} from "./myPosts/MyPosts";
+import {MyPostPropsType, ProfileInfoPropsType} from "../../redux/state";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
-import {v1} from "uuid";
 
-type Props = {};
 
-const profileInfo = [
-    {
-        id: v1(),
-        src: "https://sobakovod.club/uploads/posts/2022-01/1642613507_1-sobakovod-club-p-sobaki-labrador-retriver-kobel-1.jpg",
-        name: 'Fedorich',
-        birthDate: '06.03.1990',
-        city: 'Msk',
-        education: 'PGY',
-        website: '...',
-    }
-]
+type ProfileProps = {
+    postData: MyPostPropsType[];
+    profile: ProfileInfoPropsType[];
+};
 
-export const Profile = (props: Props) => {
-    const usersProfile = profileInfo.map((profile) => <ProfileInfo key={profile.id} {...profile}/>)
+export const Profile = ({postData, profile}: ProfileProps) => {
+    const usersProfile = profile.map((profile) => <ProfileInfo key={profile.id} {...profile}/>)
     return (
         <>
             {usersProfile}
-            <MyPosts/>
+            <MyPosts posts={postData}/>
         </>
     );
 };

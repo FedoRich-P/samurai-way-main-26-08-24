@@ -1,14 +1,8 @@
 import s from './Post.module.css'
-import styles from './Post.module.css'
 import {Button} from "../../../../components/button/Button";
 import buttonStyle from "../../../../components/button/Button.module.css";
+import {MyPostPropsType} from "../../../../redux/state";
 
-export type MyPostPropsType = {
-    id?: string;
-    text: string;
-    src: string;
-    likes: number;
-};
 export const Post = ({src, text, likes}: MyPostPropsType) => {
     return (
         <>

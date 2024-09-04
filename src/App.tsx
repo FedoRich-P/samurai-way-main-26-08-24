@@ -1,15 +1,31 @@
 import React from 'react';
 import './App.css';
 import {Header} from "./layout/header/Header";
-import {Navbar} from "./layout/aside/Navbar";
+import {Navbar} from "./layout/navbar/Navbar";
 import {Dialogs} from "./layout/dialogs/Dialogs";
 import {Profile} from "./layout/profile/Profile";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {News} from "./layout/News/News";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {News} from "./layout/news/News";
 import {Settings} from "./layout/settings/Settings";
-import {Music} from "./layout/Music/Music";
+import {Music} from "./layout/music/Music";
+import {MessagesProps, MyPostPropsType, ProfileInfoPropsType, UsersProps} from "./redux/state";
 
-function App() {
+type ProfilePageProps = {
+    postData: MyPostPropsType[]
+    profile: ProfileInfoPropsType[]
+}
+
+type MessagesPageProps = {
+    users: UsersProps[]
+    messages: MessagesProps[]
+}
+
+type AppProps = {
+    profilePage: ProfilePageProps,
+    messagesPage: MessagesPageProps,
+}
+
+function App({profilePage, messagesPage}: AppProps) {
     return (
         <BrowserRouter>
             <div className={'container'}>
@@ -18,14 +34,12 @@ function App() {
                     <Navbar/>
                     <main className="main">
                         <Routes>
-                            <Route path={'/profile'} element={<Profile/>}/>
-                            <Route path={'/dialogs/*'} element={<Dialogs/>}/>
+                            <Route path={'/profile'} element={<Profile {...profilePage}/>}/>
+                            <Route path={'/dialogs/*'} element={<Dialogs {...messagesPage}/>}/>
                             <Route path={'/news'} element={<News/>}/>
                             <Route path={'/music'} element={<Music/>}/>
                             <Route path={'/settings'} element={<Settings/>}/>
                         </Routes>
-                        {/*<Profile/>*/}
-                        {/*<Dialogs/>*/}
                     </main>
                 </div>
             </div>

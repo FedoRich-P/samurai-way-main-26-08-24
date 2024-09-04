@@ -1,24 +1,15 @@
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
-import {UserDialog} from "./Dialog/UserDialog";
+import {UserDialog} from "./dialog/UserDialog";
 import {v1} from "uuid";
-import {Message} from "./Messages/Message";
+import {Message} from "./messages/Message";
+import {MessagesProps, UsersProps} from "../../redux/state";
 
-type DialogsPropsType = {};
+type DialogsPropsType = {
+    users: UsersProps[],
+    messages: MessagesProps[],
+};
 
-const users = [
-    {id: v1(), name: "John"},
-    {id: v1(), name: "Alex"},
-    {id: v1(), name: "Elizabet"},
-    {id: v1(), name: "Mary"},
-]
-
-const messages = [
-    {id: v1(), text: "Hi John"},
-    {id: v1(), text: "Hello ! Elizabet"},
-    {id: v1(), text: "Yo Mary"},
-]
-export const Dialogs = (props: DialogsPropsType) => {
+export const Dialogs = ({users, messages}: DialogsPropsType) => {
     const usersList = users.map((user) => <UserDialog key={user.id} userName={user.name} id={user.id}/>)
     const messagesList = messages.map((message) => <Message key={message.id} text={message.text} id={message.id}/>)
     return (
