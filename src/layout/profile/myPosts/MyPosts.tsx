@@ -3,21 +3,36 @@ import styles from './MyPosts.module.css'
 import {Button} from "../../../components/button/Button";
 import {Post} from "./post/Post";
 import {MyPostPropsType} from "../../../redux/state";
+import {ChangeEvent, MouseEvent, useState} from 'react';
 
 type MyPostsProps = {
     posts: MyPostPropsType[];
+    addPost: (value: string)=> void;
 };
-export const MyPosts = ({posts}: MyPostsProps) => {
+export const MyPosts = ({posts, addPost}: MyPostsProps) => {
 
     const postList = posts.map((post) => <Post key={post.id} {...post}/>)
+
+    const [value, setValue] = useState<string>('')
+
+    const addPostFn = () => {
+        addPost(value)
+        setValue('')
+    }
+
+    const getValue =(e: ChangeEvent<HTMLTextAreaElement>)=> {
+        setValue(e.currentTarget.value)
+        e.target.focus()
+    }
+
     return (
         <>
             <div>
 
                 <h2 style={{marginBottom: '15px'}}>My posts</h2>
                 <form className={styles.form}>
-                    <textarea placeholder={'Enter your post'}></textarea>
-                    <Button className={`${s.button} ${s.addButton}`}>Add post</Button>
+                    <textarea value={value} onChange={getValue} placeholder={'Enter your post'}></textarea>
+                    <Button onClick={addPostFn} className={`${s.button} ${s.addButton}`}>Add post</Button>
                 </form>
                 <ul>
                     {postList}

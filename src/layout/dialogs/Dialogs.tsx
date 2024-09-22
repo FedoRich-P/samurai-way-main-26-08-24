@@ -4,13 +4,19 @@ import {v1} from "uuid";
 import {Message} from "./messages/Message";
 import {MessagesProps, UsersProps} from "../../redux/state";
 
-type DialogsPropsType = {
+type MessagesPagePropsType = {
     users: UsersProps[],
     messages: MessagesProps[],
 };
 
-export const Dialogs = ({users, messages}: DialogsPropsType) => {
-    const usersList = users.map((user) => <UserDialog key={user.id} userName={user.name} id={user.id}/>)
+type DialogsPropsType = {
+   state: MessagesPagePropsType,
+};
+
+
+export const Dialogs = ({state}: DialogsPropsType) => {
+    const {users, messages} = state;
+    const usersList = users.map((user) => <UserDialog key={user.id} userName={user.name} id={user.id} src={user.src}/>)
     const messagesList = messages.map((message) => <Message key={message.id} text={message.text} id={message.id}/>)
     return (
         <div className={s.dialogs}>

@@ -1,5 +1,7 @@
 import {v1} from "uuid";
+import {rerenderEntireTree} from "../render";
 
+const src = 'https://yt3.googleusercontent.com/gNPWe_Z8GKUvjGzTvGSbqvpwUMEfUFtozENoQgyQnxuFuF3fe5bq5tsWm8o0QuwMaeb2ICycHQ=s900-c-k-c0x00ffffff-no-rj'
 export type MyPostPropsType = {
     id?: string,
     text: string,
@@ -20,11 +22,16 @@ export type ProfileInfoPropsType = {
 export type UsersProps = {
     id: string,
     name: string,
+    src: string,
 }
 export type MessagesProps = {
     id: string,
     text: string,
 }
+
+// export type StateProps = {
+//     obj: {};
+// }
 
 export const state = {
 
@@ -59,10 +66,10 @@ export const state = {
 
     messagesPage: {
         users: [
-            {id: v1(), name: "John"},
-            {id: v1(), name: "Alex"},
-            {id: v1(), name: "Elizabet"},
-            {id: v1(), name: "Mary"},
+            {id: v1(), name: "John", src: 'https://avatars.mds.yandex.net/i?id=39012a20de9d0577cc073dc266d44100_l-5278064-images-thumbs&n=13'},
+            {id: v1(), name: "Alex", src: 'https://avatars.mds.yandex.net/i?id=39012a20de9d0577cc073dc266d44100_l-5278064-images-thumbs&n=13'},
+            {id: v1(), name: "Elizabet", src: 'https://avatars.mds.yandex.net/i?id=39012a20de9d0577cc073dc266d44100_l-5278064-images-thumbs&n=13'},
+            {id: v1(), name: "Mary", src: 'https://avatars.mds.yandex.net/i?id=39012a20de9d0577cc073dc266d44100_l-5278064-images-thumbs&n=13'},
         ],
 
         messages: [
@@ -71,4 +78,16 @@ export const state = {
             {id: v1(), text: "Yo Mary"},
         ]
     }
+}
+
+// type addPostProps = {
+//     postMessage: string;
+// }
+
+// console.log(postData)
+
+export const addPost = (text: string) => {
+    state.profilePage.postData = [{id: v1(), src: src, likes: 0, text}, ...state.profilePage.postData];
+    // state.profilePage.postData.push({id: v1(), src: src, likes: 0, text});
+    rerenderEntireTree(state)
 }

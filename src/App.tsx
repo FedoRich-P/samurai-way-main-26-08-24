@@ -23,9 +23,10 @@ type MessagesPageProps = {
 type AppProps = {
     profilePage: ProfilePageProps,
     messagesPage: MessagesPageProps,
+    addPost: (value: string)=> void;
 }
 
-function App({profilePage, messagesPage}: AppProps) {
+function App({profilePage, messagesPage, addPost}: AppProps) {
     return (
         <BrowserRouter>
             <div className={'container'}>
@@ -34,8 +35,8 @@ function App({profilePage, messagesPage}: AppProps) {
                     <Navbar/>
                     <main className="main">
                         <Routes>
-                            <Route path={'/profile'} element={<Profile {...profilePage}/>}/>
-                            <Route path={'/dialogs/*'} element={<Dialogs {...messagesPage}/>}/>
+                            <Route path={'/profile'} element={<Profile state={profilePage} addPost={addPost}/>}/>
+                            <Route path={'/dialogs/*'} element={<Dialogs state={messagesPage}/>}/>
                             <Route path={'/news'} element={<News/>}/>
                             <Route path={'/music'} element={<Music/>}/>
                             <Route path={'/settings'} element={<Settings/>}/>
@@ -48,3 +49,7 @@ function App({profilePage, messagesPage}: AppProps) {
 }
 
 export default App;
+
+
+{/*<Route path={'/profile'} element={<Profile {...profilePage} addPost={addPost}/>}/>*/}
+{/*<Route path={'/dialogs/*'} element={<Dialogs {...messagesPage}/>}/>*/}

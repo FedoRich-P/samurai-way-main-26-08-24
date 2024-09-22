@@ -15,7 +15,7 @@ export const Post = ({src, text, likes}: MyPostPropsType) => {
                 </div>
                 <div>
                     <span className={s.postsLikes}>Likes : {likes}</span>
-                    <Button className={buttonStyle.button}>Like</Button>
+                    <Button onClick={()=>{}} className={buttonStyle.button}>Like</Button>
                 </div>
             </li>
         </>
