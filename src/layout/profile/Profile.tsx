@@ -1,24 +1,20 @@
 import {MyPosts} from "./myPosts/MyPosts";
-import {MyPostPropsType, ProfileInfoPropsType} from "../../redux/state";
+import {MyPostPropsType, ProfileInfoPropsType, ProfilePagePropsType} from "../../redux/state";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 
-type StatePropsType = {
-    postData: MyPostPropsType[];
-    profile: ProfileInfoPropsType[];
-}
-
 type ProfileProps = {
-    state: StatePropsType
-    addPost: (value: string) => void;
+    state: ProfilePagePropsType
+    addPost: () => void;
+    updateNewPostText: (value: string) => void;
 };
 
 
-export const Profile = ({state, addPost}: ProfileProps) => {
+export const Profile = ({state, addPost, updateNewPostText}: ProfileProps) => {
     const usersProfile = state.profile.map((profile) => <ProfileInfo key={profile.id} {...profile}/>)
     return (
         <>
             {usersProfile}
-            <MyPosts posts={state.postData} addPost={addPost}/>
+            <MyPosts posts={state} addPost={addPost} updateNewPostText={updateNewPostText}/>
         </>
     );
 };

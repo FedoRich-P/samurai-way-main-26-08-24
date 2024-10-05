@@ -8,25 +8,17 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./layout/news/News";
 import {Settings} from "./layout/settings/Settings";
 import {Music} from "./layout/music/Music";
-import {MessagesProps, MyPostPropsType, ProfileInfoPropsType, UsersProps} from "./redux/state";
+import {MessagesPagePropsType, ProfilePagePropsType, updateNewPostText} from "./redux/state";
 
-type ProfilePageProps = {
-    postData: MyPostPropsType[]
-    profile: ProfileInfoPropsType[]
-}
-
-type MessagesPageProps = {
-    users: UsersProps[]
-    messages: MessagesProps[]
-}
 
 type AppProps = {
-    profilePage: ProfilePageProps,
-    messagesPage: MessagesPageProps,
-    addPost: (value: string)=> void;
+    profilePage: ProfilePagePropsType,
+    messagesPage: MessagesPagePropsType,
+    addPost: ()=> void;
+    updateNewPostText: (value: string)=> void;
 }
 
-function App({profilePage, messagesPage, addPost}: AppProps) {
+function App({profilePage, messagesPage, addPost, updateNewPostText}: AppProps) {
     return (
         <BrowserRouter>
             <div className={'container'}>
@@ -35,7 +27,7 @@ function App({profilePage, messagesPage, addPost}: AppProps) {
                     <Navbar/>
                     <main className="main">
                         <Routes>
-                            <Route path={'/profile'} element={<Profile state={profilePage} addPost={addPost}/>}/>
+                            <Route path={'/profile'} element={<Profile state={profilePage} addPost={addPost} updateNewPostText={updateNewPostText}/>}/>
                             <Route path={'/dialogs/*'} element={<Dialogs state={messagesPage}/>}/>
                             <Route path={'/news'} element={<News/>}/>
                             <Route path={'/music'} element={<Music/>}/>

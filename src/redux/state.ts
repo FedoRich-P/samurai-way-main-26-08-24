@@ -1,11 +1,13 @@
 import {v1} from "uuid";
 import {rerenderEntireTree} from "../render";
+// import {Simulate} from "react-dom/test-utils";
+// import emptied = Simulate.emptied;
 
 const src = 'https://yt3.googleusercontent.com/gNPWe_Z8GKUvjGzTvGSbqvpwUMEfUFtozENoQgyQnxuFuF3fe5bq5tsWm8o0QuwMaeb2ICycHQ=s900-c-k-c0x00ffffff-no-rj'
 export type MyPostPropsType = {
     id?: string,
-    text: string,
     src: string,
+    text: string,
     likes: number,
 };
 
@@ -28,12 +30,25 @@ export type MessagesProps = {
     id: string,
     text: string,
 }
+export type ProfilePagePropsType = {
+    postData: MyPostPropsType [];
+    newPostText: string;
+    profile: ProfileInfoPropsType[];
+}
 
-// export type StateProps = {
-//     obj: {};
-// }
+export type MessagesPagePropsType = {
+    users: UsersProps [];
+    messages: MessagesProps[];
+}
 
-export const state = {
+export type StateProps = {
+    profilePage: ProfilePagePropsType;
+    messagesPage: MessagesPagePropsType;
+}
+
+
+
+export const state: StateProps = {
 
     profilePage : {
         postData: [
@@ -50,6 +65,7 @@ export const state = {
                 likes: 100,
             }
         ],
+        newPostText: '',
 
         profile: [
             {
@@ -80,14 +96,14 @@ export const state = {
     }
 }
 
-// type addPostProps = {
-//     postMessage: string;
-// }
-
-// console.log(postData)
-
-export const addPost = (text: string) => {
-    state.profilePage.postData = [{id: v1(), src: src, likes: 0, text}, ...state.profilePage.postData];
+export const addPost = () => {
+    // let {postData, newPostText : text} = state.profilePage
+    state.profilePage.postData = [{id: v1(), src: src, likes: 0, text: state.profilePage.newPostText}, ...state.profilePage.postData];
     // state.profilePage.postData.push({id: v1(), src: src, likes: 0, text});
+    rerenderEntireTree(state)
+}
+
+export const updateNewPostText = (text: string) => {
+    state.profilePage.newPostText = text;
     rerenderEntireTree(state)
 }
