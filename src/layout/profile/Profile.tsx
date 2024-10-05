@@ -1,20 +1,22 @@
 import {MyPosts} from "./myPosts/MyPosts";
-import {MyPostPropsType, ProfileInfoPropsType, ProfilePagePropsType} from "../../redux/state";
+import {ActionType, MyPostPropsType, ProfileInfoPropsType, ProfilePagePropsType} from "../../redux/state";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 
 type ProfileProps = {
     state: ProfilePagePropsType
-    addPost: () => void;
-    updateNewPostText: (value: string) => void;
+    dispatch: (action: ActionType) => void
+    // addPost: () => void;
+    // updateNewPostText: (value: string) => void;
 };
 
 
-export const Profile = ({state, addPost, updateNewPostText}: ProfileProps) => {
+export const Profile = ({state, dispatch}: ProfileProps) => {
     const usersProfile = state.profile.map((profile) => <ProfileInfo key={profile.id} {...profile}/>)
     return (
         <>
             {usersProfile}
-            <MyPosts posts={state} addPost={addPost} updateNewPostText={updateNewPostText}/>
+            <MyPosts posts={state} dispatch={dispatch}/>
+            {/*<MyPosts posts={state} addPost={addPost} updateNewPostText={updateNewPostText}/>*/}
         </>
     );
 };

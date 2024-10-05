@@ -2,34 +2,30 @@ import s from './../../../components/button/Button.module.css'
 import styles from './MyPosts.module.css'
 import {Button} from "../../../components/button/Button";
 import {Post} from "./post/Post";
-import {MyPostPropsType, ProfilePagePropsType} from "../../../redux/state";
-import {ChangeEvent, MouseEvent, useState} from 'react';
+import {ActionType, addNewPost, ProfilePagePropsType, updateNewPostText} from "../../../redux/state";
+import {ChangeEvent, useState} from 'react';
 
 type MyPostsProps = {
     posts: ProfilePagePropsType;
-    addPost: () => void;
-    updateNewPostText: (value: string) => void;
+    dispatch: (action: ActionType) => void
+    // addPost: () => void;
+    // updateNewPostText: (value: string) => void;
 };
-export const MyPosts = ({posts, addPost, updateNewPostText}: MyPostsProps) => {
-
+export const MyPosts = ({posts, dispatch}: MyPostsProps) => {
+// export const MyPosts = ({posts, addPost, updateNewPostText}: MyPostsProps) => {
     const postList = posts.postData.map((post) => <Post key={post.id} {...post}/>)
 
     const [value, setValue] = useState<string>(posts.newPostText)
 
     const addPostFn = () => {
-        addPost()
-        updateNewPostText('')
+        dispatch({type: addNewPost})
+        // addPost()
         setValue(posts.newPostText)
     }
-
-    // const getValue =(e: ChangeEvent<HTMLTextAreaElement>)=> {
-    //     setValue(e.currentTarget.value)
-    //     e.target.focus()
-    // }
-    //
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setValue(e.currentTarget.value)
-        updateNewPostText(e.currentTarget.value)
+        dispatch({type: updateNewPostText, text: e.currentTarget.value})
+        // updateNewPostText(e.currentTarget.value)
         e.target.focus()
     }
 

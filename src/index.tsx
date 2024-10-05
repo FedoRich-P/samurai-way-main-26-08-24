@@ -1,8 +1,24 @@
 import './index.css';
-import {rerenderEntireTree} from "./render";
-import {state} from "./redux/state";
+import {store, StateProps} from "./redux/state";
+import ReactDOM from "react-dom";
+import App from "./App";
+import React from "react";
 
-rerenderEntireTree(state)
+const rerenderEntireTree = (state: StateProps) => {
+    ReactDOM.render(
+        <App
+            {...state}
+            dispatch={store.dispatch.bind(store)}
+            // addPost={store.addPost.bind(store)}
+            // updateNewPostText={store.updateNewPostText.bind(store)}
+        />,
+        document.getElementById('root')
+    );
+}
+
+rerenderEntireTree(store.getState())
+
+store.subscribe(rerenderEntireTree)
 
 
 // export type MyPostPropsType = {
