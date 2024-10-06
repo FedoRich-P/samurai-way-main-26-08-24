@@ -2,40 +2,36 @@ import s from './../../../components/button/Button.module.css'
 import styles from './MyPosts.module.css'
 import {Button} from "../../../components/button/Button";
 import {Post} from "./post/Post";
-import {ActionType, addNewPost, ProfilePagePropsType, updateNewPostText} from "../../../redux/state";
+import {ActionType, addNewPostAC, StatePropsType, updateNewPostTextAC} from "../../../redux/state";
 import {ChangeEvent, useState} from 'react';
 
 type MyPostsProps = {
-    posts: ProfilePagePropsType;
+    state: StatePropsType;
     dispatch: (action: ActionType) => void
-    // addPost: () => void;
-    // updateNewPostText: (value: string) => void;
 };
-export const MyPosts = ({posts, dispatch}: MyPostsProps) => {
-// export const MyPosts = ({posts, addPost, updateNewPostText}: MyPostsProps) => {
-    const postList = posts.postData.map((post) => <Post key={post.id} {...post}/>)
 
-    const [value, setValue] = useState<string>(posts.newPostText)
+export const MyPosts = ({state, dispatch}: MyPostsProps) => {
+
+    const postList = state.profilePage.postData.map((post) => <Post key={post.id} {...post}/>)
+
+    // const [value, setValue] = useState<string>(state.profilePage.newPostText)
 
     const addPostFn = () => {
-        dispatch({type: addNewPost})
-        // addPost()
-        setValue(posts.newPostText)
+        dispatch(addNewPostAC())
+        // setValue(state.profilePage.newPostText)
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setValue(e.currentTarget.value)
-        dispatch({type: updateNewPostText, text: e.currentTarget.value})
-        // updateNewPostText(e.currentTarget.value)
+        // setValue(e.currentTarget.value)
+        dispatch(updateNewPostTextAC(e.currentTarget.value))
         e.target.focus()
     }
 
     return (
         <>
             <div>
-
                 <h2 style={{marginBottom: '15px'}}>My posts</h2>
                 <form className={styles.form}>
-                    <textarea value={value} onChange={onPostChange} placeholder={'Enter your post'}/>
+                    <textarea value={state.profilePage.newPostText} onChange={onPostChange} placeholder={'Enter your post'}/>
                     <Button onClick={addPostFn} className={`${s.button} ${s.addButton}`}>Add post</Button>
                 </form>
                 <ul>
@@ -45,19 +41,3 @@ export const MyPosts = ({posts, dispatch}: MyPostsProps) => {
         </>
     );
 };
-
-
-// const postData: MyPostPropsType[] = [
-//     {
-//         id: v1(),
-//         src: 'https://yt3.googleusercontent.com/gNPWe_Z8GKUvjGzTvGSbqvpwUMEfUFtozENoQgyQnxuFuF3fe5bq5tsWm8o0QuwMaeb2ICycHQ=s900-c-k-c0x00ffffff-no-rj',
-//         text: 'First comment : Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, odio.',
-//         likes: 50,
-//     },
-//     {
-//         id: v1(),
-//         src: 'https://yt3.googleusercontent.com/gNPWe_Z8GKUvjGzTvGSbqvpwUMEfUFtozENoQgyQnxuFuF3fe5bq5tsWm8o0QuwMaeb2ICycHQ=s900-c-k-c0x00ffffff-no-rj',
-//         text:'Second comment: Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, odio.',
-//         likes: 100,
-//     }
-// ]

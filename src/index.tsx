@@ -1,24 +1,43 @@
 import './index.css';
-import {store, StateProps} from "./redux/state";
+import {StatePropsType, store} from "./redux/state";
 import ReactDOM from "react-dom";
 import App from "./App";
 import React from "react";
 
-const rerenderEntireTree = (state: StateProps) => {
+const rerenderEntireTree = (state: StatePropsType) => {
     ReactDOM.render(
         <App
-            {...state}
+            state={state}
             dispatch={store.dispatch.bind(store)}
-            // addPost={store.addPost.bind(store)}
-            // updateNewPostText={store.updateNewPostText.bind(store)}
         />,
         document.getElementById('root')
     );
 }
 
 rerenderEntireTree(store.getState())
-
 store.subscribe(rerenderEntireTree)
+
+
+// ==============================================
+// const rerenderEntireTree = (store: StoreType) => {
+//     ReactDOM.render(
+//         <App
+//             store={store}
+//             // dispatch={store.dispatch.bind(store)}
+//             // addPost={store.addPost.bind(store)}
+//             // updateNewPostText={store.updateNewPostText.bind(store)}
+//         />,
+//         document.getElementById('root')
+//     );
+// }
+//
+// rerenderEntireTree(store.getState())
+// rerenderEntireTree(store)
+
+// ==============================================
+
+
+// store.subscribe(rerenderEntireTree)
 
 
 // export type MyPostPropsType = {
@@ -83,3 +102,5 @@ store.subscribe(rerenderEntireTree)
 //     {id: v1(), text: "Hello ! Elizabet"},
 //     {id: v1(), text: "Yo Mary"},
 // ]
+
+{/*{...state}*/}

@@ -8,18 +8,16 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./layout/news/News";
 import {Settings} from "./layout/settings/Settings";
 import {Music} from "./layout/music/Music";
-import {ActionType, MessagesPagePropsType, ProfilePagePropsType} from "./redux/state";
+import {ActionType, StatePropsType} from "./redux/state";
 
 
 type AppProps = {
-    profilePage: ProfilePagePropsType,
-    messagesPage: MessagesPagePropsType,
-    dispatch: (action: ActionType) => void
-    // addPost: ()=> void;
-    // updateNewPostText: (value: string)=> void;
+    state: StatePropsType;
+    dispatch: (action: ActionType) => void;
 }
 
-function App({profilePage, messagesPage, dispatch}: AppProps) {
+function App({state, dispatch}: AppProps) {
+
     return (
         <BrowserRouter>
             <div className={'container'}>
@@ -28,9 +26,8 @@ function App({profilePage, messagesPage, dispatch}: AppProps) {
                     <Navbar/>
                     <main className="main">
                         <Routes>
-                            <Route path={'/profile'} element={<Profile state={profilePage} dispatch={dispatch}/>}/>
-                            {/*<Route path={'/profile'} element={<Profile state={profilePage} addPost={addPost} updateNewPostText={updateNewPostText}/>}/>*/}
-                            <Route path={'/dialogs/*'} element={<Dialogs state={messagesPage}/>}/>
+                            <Route path={'/profile'} element={<Profile state={state} dispatch={dispatch}/>}/>
+                            <Route path={'/dialogs/*'} element={<Dialogs state={state} dispatch={dispatch}/>}/>
                             <Route path={'/news'} element={<News/>}/>
                             <Route path={'/music'} element={<Music/>}/>
                             <Route path={'/settings'} element={<Settings/>}/>
@@ -49,3 +46,7 @@ export default App;
 }
 {/*<Route path={'/dialogs/*'} element={<Dialogs {...messagesPage}/>}/>*/
 }
+
+// profilePage: ProfilePagePropsType,
+// messagesPage: MessagesPagePropsType,
+// dispatch: (action: ActionType) => void
