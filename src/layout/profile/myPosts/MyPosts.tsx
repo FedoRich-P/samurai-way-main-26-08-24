@@ -2,8 +2,9 @@ import s from './../../../components/button/Button.module.css'
 import styles from './MyPosts.module.css'
 import {Button} from "../../../components/button/Button";
 import {Post} from "./post/Post";
-import {ActionType, addNewPostAC, StatePropsType, updateNewPostTextAC} from "../../../redux/state";
+import {ActionType,StatePropsType } from "../../../redux/state";
 import {ChangeEvent, useState} from 'react';
+import {addNewPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
 
 type MyPostsProps = {
     state: StatePropsType;
@@ -14,14 +15,10 @@ export const MyPosts = ({state, dispatch}: MyPostsProps) => {
 
     const postList = state.profilePage.postData.map((post) => <Post key={post.id} {...post}/>)
 
-    // const [value, setValue] = useState<string>(state.profilePage.newPostText)
-
     const addPostFn = () => {
         dispatch(addNewPostAC())
-        // setValue(state.profilePage.newPostText)
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        // setValue(e.currentTarget.value)
         dispatch(updateNewPostTextAC(e.currentTarget.value))
         e.target.focus()
     }

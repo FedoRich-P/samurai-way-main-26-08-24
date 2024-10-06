@@ -1,11 +1,6 @@
 import {v1} from "uuid";
-import {profileReducer} from "./profileReducer";
-import {dialogsReducer} from "./dialogsReducer";
-
-export const ADD_NEW_POST = 'ADD_NEW_POST'
-export const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
-export const UPDATE_NEW_MESSAGES_BODY = 'UPDATE_NEW_MESSAGES_BODY'
-export const SEND_MESSAGE = 'SEND_MESSAGE'
+import {AddNewPostType, profileReducer, UpdateNewPostTextType} from "./profileReducer";
+import {dialogsReducer, SendMessageType, UpdateNewMessagesBodyType} from "./dialogsReducer";
 
 //Types
 export type MyPostPropsType = {
@@ -53,34 +48,6 @@ export type StoreType = {
     getState: () => StatePropsType;
     subscribe: (callBack: (state: StatePropsType) => void) => void;
     dispatch: (action: any) => void;
-}
-//Action Creators
-type AddNewPostType = ReturnType<typeof addNewPostAC>
-type UpdateNewPostTextType = ReturnType<typeof updateNewPostTextAC>
-type UpdateNewMessagesBodyType = ReturnType<typeof updateNewMessagesBodyAC>
-type SendMessageType = ReturnType<typeof sendMessageAC>
-export const addNewPostAC = () => {
-    return {
-        type: ADD_NEW_POST,
-    } as const
-}
-export const updateNewPostTextAC = (text: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        text: text
-    } as const
-}
-export const updateNewMessagesBodyAC = (text: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGES_BODY,
-        text
-    } as const
-}
-export const sendMessageAC = (text: string) => {
-    return {
-        type: SEND_MESSAGE,
-        text
-    } as const
 }
 
 export const store: StoreType = {
