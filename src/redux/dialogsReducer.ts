@@ -3,20 +3,6 @@ import {v1} from "uuid";
 
 const UPDATE_NEW_MESSAGES_BODY = 'UPDATE_NEW_MESSAGES_BODY'
 const SEND_MESSAGE = 'SEND_MESSAGE'
-export type UpdateNewMessagesBodyType = ReturnType<typeof updateNewMessagesBodyAC>
-export type SendMessageType = ReturnType<typeof sendMessageAC>
-export const updateNewMessagesBodyAC = (text: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGES_BODY,
-        text
-    } as const
-}
-export const sendMessageAC = (text: string) => {
-    return {
-        type: SEND_MESSAGE,
-        text
-    } as const
-}
 
 export const dialogsReducer = (state: MessagesPagePropsType, action: ActionType): MessagesPagePropsType => {
     const updateNewMessagesBody = (text: string) => {
@@ -44,4 +30,19 @@ export const dialogsReducer = (state: MessagesPagePropsType, action: ActionType)
             return state;
     }
 
+}
+export type UpdateNewMessagesBodyType = ReturnType<typeof updateNewMessagesBodyAC>
+export type SendMessageType = ReturnType<typeof sendMessageAC>
+
+export const updateNewMessagesBodyAC = (text: string) => {
+    return {
+        type: UPDATE_NEW_MESSAGES_BODY,
+        text
+    } as const
+}
+export const sendMessageAC = (text: string) => {
+    return {
+        type: SEND_MESSAGE,
+        text
+    } as const
 }

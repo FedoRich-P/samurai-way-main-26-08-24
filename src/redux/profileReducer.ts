@@ -5,19 +5,6 @@ const src = 'https://yt3.googleusercontent.com/gNPWe_Z8GKUvjGzTvGSbqvpwUMEfUFtoz
 
 const ADD_NEW_POST = 'ADD_NEW_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
-export type AddNewPostType = ReturnType<typeof addNewPostAC>
-export type UpdateNewPostTextType = ReturnType<typeof updateNewPostTextAC>
-export const addNewPostAC = () => {
-    return {
-        type: ADD_NEW_POST,
-    } as const
-}
-export const updateNewPostTextAC = (text: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        text: text
-    } as const
-}
 
 export const profileReducer = (state: ProfilePagePropsType, action: ActionType): ProfilePagePropsType => {
     const addPost = () => {
@@ -45,4 +32,20 @@ export const profileReducer = (state: ProfilePagePropsType, action: ActionType):
         default:
             return state
     }
+}
+
+export type AddNewPostType = ReturnType<typeof addNewPostAC>
+export type UpdateNewPostTextType = ReturnType<typeof updateNewPostTextAC>
+
+
+export const addNewPostAC = () => {
+    return {
+        type: ADD_NEW_POST,
+    } as const
+}
+export const updateNewPostTextAC = (text: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        text: text
+    } as const
 }

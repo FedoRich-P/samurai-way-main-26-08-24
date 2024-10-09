@@ -42,6 +42,7 @@ export type StatePropsType = {
     messagesPage: MessagesPagePropsType;
 }
 export type ActionType = AddNewPostType | UpdateNewPostTextType | UpdateNewMessagesBodyType | SendMessageType
+
 export type StoreType = {
     state: StatePropsType;
     callSubscriber: (value: StatePropsType) => void;
@@ -105,15 +106,12 @@ export const store: StoreType = {
                     src: 'https://avatars.mds.yandex.net/i?id=39012a20de9d0577cc073dc266d44100_l-5278064-images-thumbs&n=13'
                 },
             ],
-
             messages: [
                 {id: v1(), text: "Hi John"},
                 {id: v1(), text: "Hello ! Elizabet"},
                 {id: v1(), text: "Yo Mary"},
             ],
             newMessagesBody: '',
-
-
         }
     },
     callSubscriber(value: StatePropsType) {
@@ -136,7 +134,6 @@ export const store: StoreType = {
 
 
 }
-
 
 // type AddNewPostType = {
 //     type: typeof addNewPost,
