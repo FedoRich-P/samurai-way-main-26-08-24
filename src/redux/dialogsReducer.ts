@@ -1,10 +1,42 @@
-import {ActionType, MessagesPagePropsType} from "./state";
+import {ActionType, MessagesPagePropsType} from "./store";
 import {v1} from "uuid";
 
 const UPDATE_NEW_MESSAGES_BODY = 'UPDATE_NEW_MESSAGES_BODY'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
-export const dialogsReducer = (state: MessagesPagePropsType, action: ActionType): MessagesPagePropsType => {
+const initialState = {
+        users: [
+            {
+                id: v1(),
+                name: "John",
+                src: 'https://avatars.mds.yandex.net/i?id=39012a20de9d0577cc073dc266d44100_l-5278064-images-thumbs&n=13'
+            },
+            {
+                id: v1(),
+                name: "Alex",
+                src: 'https://avatars.mds.yandex.net/i?id=39012a20de9d0577cc073dc266d44100_l-5278064-images-thumbs&n=13'
+            },
+            {
+                id: v1(),
+                name: "Elizabet",
+                src: 'https://avatars.mds.yandex.net/i?id=39012a20de9d0577cc073dc266d44100_l-5278064-images-thumbs&n=13'
+            },
+            {
+                id: v1(),
+                name: "Mary",
+                src: 'https://avatars.mds.yandex.net/i?id=39012a20de9d0577cc073dc266d44100_l-5278064-images-thumbs&n=13'
+            },
+        ],
+        messages: [
+            {id: v1(), text: "Hi John"},
+            {id: v1(), text: "Hello ! Elizabet"},
+            {id: v1(), text: "Yo Mary"},
+        ],
+        newMessagesBody: '',
+    }
+
+
+export const dialogsReducer = (state: MessagesPagePropsType = initialState, action: ActionType): MessagesPagePropsType => {
     const updateNewMessagesBody = (text: string) => {
         state.newMessagesBody = text
     };

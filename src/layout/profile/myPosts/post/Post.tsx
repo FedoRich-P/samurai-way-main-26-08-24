@@ -1,7 +1,7 @@
 import s from './Post.module.css'
 import {Button} from "../../../../components/button/Button";
 import buttonStyle from "../../../../components/button/Button.module.css";
-import {MyPostPropsType} from "../../../../redux/state";
+import {MyPostPropsType} from "../../../../redux/store";
 
 export const Post = ({src, text, likes}: MyPostPropsType) => {
     return (

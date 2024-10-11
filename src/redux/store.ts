@@ -1,6 +1,7 @@
 import {v1} from "uuid";
 import {AddNewPostType, profileReducer, UpdateNewPostTextType} from "./profileReducer";
 import {dialogsReducer, SendMessageType, UpdateNewMessagesBodyType} from "./dialogsReducer";
+import {Simulate} from "react-dom/test-utils";
 
 //Types
 export type MyPostPropsType = {
@@ -129,6 +130,7 @@ export const store: StoreType = {
     dispatch(action: ActionType) {
         this.state.profilePage = profileReducer(this.state.profilePage, action)
         this.state.messagesPage = dialogsReducer(this.state.messagesPage, action)
+
         this.callSubscriber(this.state)
     }
 
@@ -192,3 +194,4 @@ export const store: StoreType = {
 //         break;
 //     }
 // }
+

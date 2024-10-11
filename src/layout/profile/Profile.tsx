@@ -1,5 +1,5 @@
 import {MyPosts} from "./myPosts/MyPosts";
-import {ActionType, StatePropsType} from "../../redux/state";
+import {ActionType, StatePropsType} from "../../redux/store";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 
 type ProfileProps = {

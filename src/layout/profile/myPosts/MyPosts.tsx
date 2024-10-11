@@ -2,7 +2,7 @@ import s from './../../../components/button/Button.module.css'
 import styles from './MyPosts.module.css'
 import {Button} from "../../../components/button/Button";
 import {Post} from "./post/Post";
-import {ActionType,StatePropsType } from "../../../redux/state";
+import {ActionType,StatePropsType } from "../../../redux/store";
 import {ChangeEvent, useState} from 'react';
 import {addNewPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
 

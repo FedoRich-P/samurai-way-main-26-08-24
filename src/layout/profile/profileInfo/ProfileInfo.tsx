@@ -1,5 +1,5 @@
 import s from './ProfileInfo.module.css'
-import {ProfileInfoPropsType} from "../../../redux/state";
+import {ProfileInfoPropsType} from "../../../redux/store";
 
 export const ProfileInfo = (props: ProfileInfoPropsType) => {
     const {

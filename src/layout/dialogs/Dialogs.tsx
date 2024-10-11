@@ -1,7 +1,7 @@
 import s from './Dialogs.module.css'
 import {UserDialog} from "./dialog/UserDialog";
 import {Message} from "./messages/Message";
-import {ActionType, StatePropsType} from "../../redux/state";
+import {ActionType, StatePropsType} from "../../redux/store";
 import {ChangeEvent} from "react";
 import {Button} from "../../components/button/Button";
 import {sendMessageAC, updateNewMessagesBodyAC} from "../../redux/dialogsReducer";
