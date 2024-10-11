@@ -37,6 +37,8 @@ const initialState = {
 
 
 export const dialogsReducer = (state: MessagesPagePropsType = initialState, action: ActionType): MessagesPagePropsType => {
+    const newState = structuredClone(state)
+
     const updateNewMessagesBody = (text: string) => {
         state.newMessagesBody = text
     };

@@ -4,18 +4,18 @@ import {Message} from "./messages/Message";
 import {ActionType, StatePropsType} from "../../redux/store";
 import {ChangeEvent} from "react";
 import {Button} from "../../components/button/Button";
-import {sendMessageAC, updateNewMessagesBodyAC} from "../../redux/dialogsReducer";
+import {dialogsReducer, sendMessageAC, updateNewMessagesBodyAC} from "../../redux/dialogsReducer";
 
 type DialogsPropsType = {
-    state: StatePropsType
+    state: any
     dispatch: (action: ActionType) => void
 };
 
 
 export const Dialogs = ({state, dispatch}: DialogsPropsType) => {
-    const {users, messages, newMessagesBody} = state.messagesPage
-    const usersList = users.map((user) => <UserDialog key={user.id} userName={user.name} id={user.id} src={user.src}/>)
-    const messagesList = messages.map((message) => <Message key={message.id} text={message.text} id={message.id}/>)
+    const {users, messages, newMessagesBody} = state.dialogsReducer
+    const usersList = users.map((user: any) => <UserDialog key={user.id} userName={user.name} id={user.id} src={user.src}/>)
+    const messagesList = messages.map((message: any) => <Message key={message.id} text={message.text} id={message.id}/>)
 
     const onSendMessageClick = () => {
         dispatch(sendMessageAC(newMessagesBody))
