@@ -10,14 +10,12 @@ import {Settings} from "./layout/settings/Settings";
 import {Music} from "./layout/music/Music";
 import {ActionType, StatePropsType} from "./redux/store";
 
-
 type AppProps = {
-    state: StatePropsType;
+    state: any;
     dispatch: (action: ActionType) => void;
 }
 
 function App({state, dispatch}: AppProps) {
-
     return (
         <BrowserRouter>
             <div className={'container'}>
@@ -26,8 +24,8 @@ function App({state, dispatch}: AppProps) {
                     <Navbar/>
                     <main className="main">
                         <Routes>
-                            <Route path={'/profile'} element={<Profile state={state} dispatch={dispatch}/>}/>
-                            <Route path={'/dialogs/*'} element={<Dialogs state={state} dispatch={dispatch}/>}/>
+                            <Route path={'/profile'} element={<Profile state={state.profileReducer} dispatch={dispatch}/>}/>
+                            <Route path={'/dialogs/*'} element={<Dialogs state={state.dialogsReducer} dispatch={dispatch}/>}/>
                             <Route path={'/news'} element={<News/>}/>
                             <Route path={'/music'} element={<Music/>}/>
                             <Route path={'/settings'} element={<Settings/>}/>
@@ -40,13 +38,3 @@ function App({state, dispatch}: AppProps) {
 }
 
 export default App;
-
-
-{/*<Route path={'/profile'} element={<Profile {...profilePage} addPost={addPost}/>}/>*/
-}
-{/*<Route path={'/dialogs/*'} element={<Dialogs {...messagesPage}/>}/>*/
-}
-
-// profilePage: ProfilePagePropsType,
-// messagesPage: MessagesPagePropsType,
-// dispatch: (action: ActionType) => void

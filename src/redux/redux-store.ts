@@ -9,4 +9,4 @@ export const reducers = combineReducers({
 })
 
 export const  store = configureStore({reducer: reducers})
-// export const store = createStore(reducers);
+

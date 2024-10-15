@@ -1,8 +1,6 @@
-type MessagePropsType = {
-    text: string;
-    id: string;
-};
-export const Message = ({text, id}: MessagePropsType) => {
+import {MessagesProps} from "../../../redux/store";
+
+export const Message = ({text}: MessagesProps) => {
     return (
         <li>{text}</li>
     );

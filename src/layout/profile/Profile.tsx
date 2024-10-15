@@ -1,17 +1,16 @@
 import {MyPosts} from "./myPosts/MyPosts";
-import {ActionType} from "../../redux/store";
+import {ActionType, ProfilePagePropsType} from "../../redux/store";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 
 type ProfileProps = {
-    state: any
-    dispatch: (action: ActionType) => void
+    state: ProfilePagePropsType;
+    dispatch: (action: ActionType) => void;
 };
 
 
 export const Profile = ({state, dispatch}: ProfileProps) => {
-    const {profile} = state.profileReducer;
-    const usersProfile = <ProfileInfo key={profile.id} {...profile}/>
-    // const usersProfile = Object.values(profile[0]).map((profile) => <ProfileInfo {...profile}/>)
+    const {profile} = state;
+    const usersProfile = <ProfileInfo {...profile[0]}/>
     return (
         <>
             {usersProfile}

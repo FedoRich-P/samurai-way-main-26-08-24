@@ -1,7 +1,6 @@
 import {v1} from "uuid";
 import {AddNewPostType, profileReducer, UpdateNewPostTextType} from "./profileReducer";
 import {dialogsReducer, SendMessageType, UpdateNewMessagesBodyType} from "./dialogsReducer";
-import {Simulate} from "react-dom/test-utils";
 
 //Types
 export type MyPostPropsType = {
@@ -43,7 +42,6 @@ export type StatePropsType = {
     messagesPage: MessagesPagePropsType;
 }
 export type ActionType = AddNewPostType | UpdateNewPostTextType | UpdateNewMessagesBodyType | SendMessageType
-
 export type StoreType = {
     state: StatePropsType;
     callSubscriber: (value: StatePropsType) => void;
@@ -70,7 +68,7 @@ export const store: StoreType = {
                     likes: 100,
                 }
             ],
-            newPostText: '',
+            newPostText: 'jhguyguy',
             profile: [
                 {
                     id: v1(),
@@ -83,7 +81,6 @@ export const store: StoreType = {
                 }
             ],
         },
-
         messagesPage: {
             users: [
                 {
@@ -126,15 +123,12 @@ export const store: StoreType = {
         this.callSubscriber = observer
     },
     // =================================================
-
     dispatch(action: ActionType) {
         this.state.profilePage = profileReducer(this.state.profilePage, action)
         this.state.messagesPage = dialogsReducer(this.state.messagesPage, action)
 
         this.callSubscriber(this.state)
     }
-
-
 }
 
 // type AddNewPostType = {

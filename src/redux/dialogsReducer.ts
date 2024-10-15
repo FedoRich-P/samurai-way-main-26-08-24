@@ -37,28 +37,22 @@ const initialState = {
 
 
 export const dialogsReducer = (state: MessagesPagePropsType = initialState, action: ActionType): MessagesPagePropsType => {
-    const newState = structuredClone(state)
-
-    const updateNewMessagesBody = (text: string) => {
-        state.newMessagesBody = text
-    };
-    const sendMessageBody = () => {
-        let text = state.newMessagesBody;
-        state.newMessagesBody = ''
-        state.messages = [
-            ...state.messages,
-            {id: v1(), text},
-        ]
-    };
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGES_BODY: {
-            updateNewMessagesBody(action.text)
-            return state;
+            return {
+                ...state,
+                newMessagesBody: action.payload.text
+            };
         }
         case SEND_MESSAGE: {
-            sendMessageBody()
-            return state;
+            return {
+                ...state,
+                messages:[
+                    ...state.messages,
+                    {id: v1(), text: state.newMessagesBody},
+                ]
+            };
         }
         default :
             return state;
@@ -68,15 +62,22 @@ export const dialogsReducer = (state: MessagesPagePropsType = initialState, acti
 export type UpdateNewMessagesBodyType = ReturnType<typeof updateNewMessagesBodyAC>
 export type SendMessageType = ReturnType<typeof sendMessageAC>
 
-export const updateNewMessagesBodyAC = (text: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGES_BODY,
-        text
-    } as const
+export const updateNewMessagesBodyAC = (payload: {text: string}) => {
+    return { type: UPDATE_NEW_MESSAGES_BODY, payload } as const
 }
-export const sendMessageAC = (text: string) => {
-    return {
-        type: SEND_MESSAGE,
-        text
-    } as const
+export const sendMessageAC = (payload: {text: string}) => {
+    return { type: SEND_MESSAGE, payload } as const
 }
+
+
+// const updateNewMessagesBody = (text: string) => {
+//     state.newMessagesBody = text
+// };
+// const sendMessageBody = () => {
+//     let text = state.newMessagesBody;
+//     state.newMessagesBody = ''
+//     state.messages = [
+//         ...state.messages,
+//         {id: v1(), text},
+//     ]
+// };
