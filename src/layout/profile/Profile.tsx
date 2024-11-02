@@ -1,6 +1,7 @@
 import {MyPosts} from "./myPosts/MyPosts";
 import {ActionType, ProfilePagePropsType} from "../../redux/store";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
+import {MyPostsContainer} from "./myPosts/post/MyPostsContainer";
 
 type ProfileProps = {
     state: ProfilePagePropsType;
@@ -14,7 +15,7 @@ export const Profile = ({state, dispatch}: ProfileProps) => {
     return (
         <>
             {usersProfile}
-            <MyPosts state={state} dispatch={dispatch}/>
+            <MyPostsContainer state={state} dispatch={dispatch}/>
         </>
     );
 };

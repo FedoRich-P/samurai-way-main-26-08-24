@@ -9,6 +9,7 @@ import {News} from "./layout/news/News";
 import {Settings} from "./layout/settings/Settings";
 import {Music} from "./layout/music/Music";
 import {ActionType, StatePropsType} from "./redux/store";
+import {DialogsContainer} from "./layout/dialogs/DialogsContainer";
 
 type AppProps = {
     state: any;
@@ -25,7 +26,7 @@ function App({state, dispatch}: AppProps) {
                     <main className="main">
                         <Routes>
                             <Route path={'/profile'} element={<Profile state={state.profileReducer} dispatch={dispatch}/>}/>
-                            <Route path={'/dialogs/*'} element={<Dialogs state={state.dialogsReducer} dispatch={dispatch}/>}/>
+                            <Route path={'/dialogs/*'} element={<DialogsContainer state={state.dialogsReducer} dispatch={dispatch}/>}/>
                             <Route path={'/news'} element={<News/>}/>
                             <Route path={'/music'} element={<Music/>}/>
                             <Route path={'/settings'} element={<Settings/>}/>

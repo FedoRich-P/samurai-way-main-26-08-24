@@ -1,28 +1,31 @@
 import s from './Dialogs.module.css'
 import {UserDialog} from "./dialog/UserDialog";
 import {Message} from "./messages/Message";
-import {ActionType, MessagesPagePropsType} from "../../redux/store";
+import {MessagesPagePropsType} from "../../redux/store";
 import {ChangeEvent} from "react";
 import {Button} from "../../components/button/Button";
-import {sendMessageAC, updateNewMessagesBodyAC} from "../../redux/dialogsReducer";
 
 type DialogsPropsType = {
+    upDateNewMessageBody: (value: string) => void
+    sendMessage: () => void
     state: MessagesPagePropsType;
-    dispatch: (action: ActionType) => void;
 };
 
-export const Dialogs = ({state : {users, messages, newMessagesBody}, dispatch}: DialogsPropsType) => {
+export const Dialogs = ({
+                            state: {users, messages, newMessagesBody},
+                            upDateNewMessageBody,
+                            sendMessage
+                        }: DialogsPropsType) => {
 
     const usersList = users.map((user) => <UserDialog key={user.id} {...user}/>)
     const messagesList = messages.map((message) => <Message key={message.id} {...message}/>)
 
     const onSendMessageClick = () => {
-        dispatch(sendMessageAC({text: newMessagesBody}))
-        dispatch(updateNewMessagesBodyAC({text: ''}))
+        sendMessage()
     }
 
     const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(updateNewMessagesBodyAC({text: e.currentTarget.value}))
+        upDateNewMessageBody(e.currentTarget.value)
     }
 
     return (
@@ -47,7 +50,7 @@ export const Dialogs = ({state : {users, messages, newMessagesBody}, dispatch}: 
                         type={'button'}
                         onClick={onSendMessageClick}
                         className={`${s.button} ${s.addButton}`}>
-                        Send  message
+                        Send message
                     </Button>
                 </form>
             </div>
