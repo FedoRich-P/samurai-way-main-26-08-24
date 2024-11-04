@@ -46,7 +46,8 @@ export const profileReducer = (state = initialState, action: ActionType): Profil
                         likes: 0,
                         text: state.newPostText},
                     ...state.postData
-                ]
+                ],
+                newPostText: '',
             }
         }
         case UPDATE_NEW_POST_TEXT: {

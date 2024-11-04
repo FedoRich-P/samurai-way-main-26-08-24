@@ -1,26 +1,27 @@
 import React, {ChangeEvent} from 'react';
-import type {ActionType, ProfilePagePropsType} from "../../../../redux/store";
+import type {ProfilePagePropsType} from "../../../../redux/store";
 import {addNewPostAC, updateNewPostTextAC} from "../../../../redux/profileReducer";
 import {MyPosts} from "../MyPosts";
-import {dblClick} from "@testing-library/user-event/dist/click";
+import {useDispatch, useSelector} from "react-redux";
+import type {RootState} from "../../../../redux/redux-store";
 
-
-type MyPostsContainerProps = {
-    state: ProfilePagePropsType;
-    dispatch: (action: ActionType) => void
+type Props = {
 };
 
-export const MyPostsContainer = ({state, dispatch}: MyPostsContainerProps) => {
+export const MyPostsContainer = (props: Props) => {
+
+    const state = useSelector<RootState, ProfilePagePropsType>(state => state.profile);
+    const dispatch = useDispatch();
+
     const addPostFn = () => {
         dispatch(addNewPostAC())
-        dispatch(updateNewPostTextAC({text: ''}))
     }
-    const onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         dispatch(updateNewPostTextAC({text: e.currentTarget.value}))
         e.target.focus()
     }
-
     return (
         <MyPosts addPost={addPostFn} updateNewPostText={onPostChange} state={state}/>
-    );
+    )
+
 };

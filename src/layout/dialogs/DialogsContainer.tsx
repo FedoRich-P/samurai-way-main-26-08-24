@@ -1,22 +1,20 @@
-import s from './Dialogs.module.css'
-import {UserDialog} from "./dialog/UserDialog";
-import {Message} from "./messages/Message";
-import {ActionType, MessagesPagePropsType} from "../../redux/store";
-import {ChangeEvent} from "react";
-import {Button} from "../../components/button/Button";
+import {MessagesPagePropsType} from "../../redux/store";
 import {sendMessageAC, updateNewMessagesBodyAC} from "../../redux/dialogsReducer";
 import {Dialogs} from "./Dialogs";
+import {useDispatch, useSelector} from "react-redux";
+import type {RootState} from "../../redux/redux-store";
 
 type DialogsContainerProps = {
-    state: MessagesPagePropsType;
-    dispatch: (action: ActionType) => void;
 };
 
-export const DialogsContainer = ({state, dispatch}: DialogsContainerProps) => {
+export const DialogsContainer = () => {
+    const state = useSelector<RootState, MessagesPagePropsType>(state=> state.dialogs)
+
+    const dispatch = useDispatch();
 
     const onSendMessageClick = () => {
         dispatch(sendMessageAC({text: state.newMessagesBody}))
-        dispatch(updateNewMessagesBodyAC({text: ''}))
+        // dispatch(updateNewMessagesBodyAC({text: ''}))
     }
 
     const onNewMessageChange = (text: string) => {

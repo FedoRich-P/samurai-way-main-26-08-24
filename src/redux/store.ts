@@ -50,7 +50,7 @@ export type StoreType = {
     dispatch: (action: any) => void;
 }
 
-export const store: StoreType = {
+export const storeee: StoreType = {
     state: <StatePropsType>{
 
         profilePage: {

@@ -51,7 +51,8 @@ export const dialogsReducer = (state: MessagesPagePropsType = initialState, acti
                 messages:[
                     ...state.messages,
                     {id: v1(), text: state.newMessagesBody},
-                ]
+                ],
+                newMessagesBody: '',
             };
         }
         default :

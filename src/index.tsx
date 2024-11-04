@@ -1,20 +1,22 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import './index.css';
+import App from './App';
+import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
 import {store} from "./redux/redux-store";
-import ReactDOM from "react-dom";
-import App from "./App";
-import React from "react";
 
-const rerenderEntireTree = (state: any )  => {
-    ReactDOM.render(
-        <App
-            state={state}
-            dispatch={store.dispatch}
-        />,
-        document.getElementById('root')
-    );
-}
 
-rerenderEntireTree(store.getState())
-store.subscribe(()=> {
-    rerenderEntireTree(store.getState())
-})
+ReactDOM.render(
+    <React.StrictMode>
+                 <BrowserRouter>
+                    <Provider store={store}>
+                        <App/>
+                   </Provider>
+                </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById('root')
+);
+
+
+//    "@types/react": "^18.3.11"
