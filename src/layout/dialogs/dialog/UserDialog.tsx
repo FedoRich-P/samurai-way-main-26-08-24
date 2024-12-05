@@ -1,4 +1,4 @@
-import s from './UserDialog.module.css'
+import s from './UserDialod.module.css'
 import {NavLink} from "react-router-dom";
 import {UsersProps} from "../../../redux/store";
 
