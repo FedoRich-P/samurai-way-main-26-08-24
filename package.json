@@ -4,6 +4,9 @@
   "private": true,
   "homepage": "https://FedoRich-P.github.io/samurai-way-main-26-08-24",
   "dependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@mui/material": "^6.1.10",
     "@reduxjs/toolkit": "^2.2.8",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "12.0.0",

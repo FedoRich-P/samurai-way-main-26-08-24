@@ -1,40 +1,77 @@
 import s from './ProfileInfo.module.css'
-import {ProfileInfoPropsType} from "../../../redux/store";
+import {DomainUser} from "../Profile";
 
-export const ProfileInfo = (props: ProfileInfoPropsType) => {
-    const {
-        src, name, birthDate, city, education, website,
-    } = props
+// id: v1(),
+// src: "https://sobakovod.club/uploads/posts/2022-01/1642613507_1-sobakovod-club-p-sobaki-labrador-retriver-kobel-1.jpg",
+// name: 'Fedorich',
+// birthDate: '06.03.1990',
+// city: 'Msk',
+// education: 'PGY',
+// website: '...',
+
+// export type DomainUser = {
+//     userId: string
+//     lookingForAJob: boolean
+//     lookingForAJobDescription: string
+//     fullName: string
+//     contacts: {
+//         github: string
+//         vk: string
+//         facebook: string
+//         instagram: string
+//         twitter: string
+//         website: string
+//         youtube: string
+//         mainLink: string
+//     }
+//     photos: {
+//         small: string
+//         large: string
+//     }
+//
+// }
+
+export const ProfileInfo = (user: DomainUser) => {
+    const {fullName, photos, aboutMe, lookingForAJob
+    } = user
     return (
         <>
             <article className={s.userCard}>
                 <div className={s.imgWrapper}>
                     <img
-                        src={src}
+                        src={photos?.large}
                         alt="User photo"/>
                 </div>
 
                 <ul className={s.userData}>
                     <li>
                         <dt>Name</dt>
-                        <dd>{name}</dd>
+                        <dd>{fullName}</dd>
                     </li>
                     <li>
-                        <dt>Birth Date</dt>
-                        <dd>{birthDate}</dd>
+                        <dt>About me</dt>
+                        <dd>{aboutMe}</dd>
                     </li>
                     <li>
-                        <dt>City</dt>
-                        <dd>{city}</dd>
+                        <dt>Looking for a job</dt>
+                        <dd> {lookingForAJob ? 'Yes' : "No"} </dd>
                     </li>
-                    <li>
-                        <dt>Education</dt>
-                        <dd>{education}</dd>
-                    </li>
-                    <li>
-                        <dt>Web Side</dt>
-                        <dd>{website}</dd>
-                    </li>
+                    {/*<li>*/}
+                    {/*    <dt>Birth Date</dt>*/}
+                    {/*    <dd>{birthDate}</dd>*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*    <dt>City</dt>*/}
+                    {/*    <dd>{city}</dd>*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*    <dt>Education</dt>*/}
+                    {/*    <dd>{education}</dd>*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*    <dt>Web Side</dt>*/}
+                    {/*    <dd>{website}</dd>*/}
+                    {/*</li>*/}
                 </ul>
             </article>
         </>

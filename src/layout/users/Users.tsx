@@ -6,24 +6,27 @@ import {
     followAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
-    setUsersAC,
+    setUsersAC, toggleFetchingAC,
     unFollowAC,
     UserFromData
 } from "../../redux/usersReducer";
 import axios from "axios";
+import {CircularProgress} from "@mui/material";
+import {NavLink, useParams} from "react-router-dom";
 
 const imgSrc = 'https://avatars.mds.yandex.net/i?id=39012a20de9d0577cc073dc266d44100_l-5278064-images-thumbs&n=13'
 
 type Props = {};
-export const UsersContainer = (props: Props) => {
+export const Users = (props: Props) => {
     const dispatch = useDispatch();
+    console.log('users')
 
     const users = useSelector<RootState, UserFromData[]>((state) => state.users.users);
     const pageSize = useSelector<RootState, number>((state) => state.users.pageSize);
     const totalUserCount = useSelector<RootState, number>((state) => state.users.totalCount);
     const currentPage = useSelector<RootState, number>((state) => state.users.currentPage);
+    const isFetching = useSelector<RootState, boolean>((state) => state.users.isFetching);
 
-    console.log(totalUserCount)
     const pagesCount = totalUserCount ? Math.ceil(totalUserCount / pageSize) : 1;
 
     const follow = (userId: number, isFollowed: boolean) => {
@@ -36,7 +39,6 @@ export const UsersContainer = (props: Props) => {
 
     const setCurrentPage = (value: number) => {
         dispatch(setCurrentPageAC({currentPage: value}))
-        console.log(value)
     }
 
     const pages = [];
@@ -51,6 +53,9 @@ export const UsersContainer = (props: Props) => {
             if (res.data.items) {
                 dispatch(setUsersAC({users: res.data.items}))
                 dispatch(setTotalUsersCountAC({totalCount: res.data.totalCount}))
+                dispatch(toggleFetchingAC({isFetching: false}))
+            } else {
+                dispatch(toggleFetchingAC({isFetching: true}))
             }
             // if (res.data.items) dispatch(setUsersAC({users: res.data.items, totalCount: res.data.totalCount}))
         })
@@ -58,6 +63,7 @@ export const UsersContainer = (props: Props) => {
 
     return (
         <>
+            { isFetching && <CircularProgress size="3rem"/>}
             <ul style={{
                 display: 'flex',
                 flexWrap: 'wrap',
@@ -79,7 +85,9 @@ export const UsersContainer = (props: Props) => {
                     user && <li key={user.id} className={s.userItem}>
                         <h2>{user.name}</h2>
                         <div className={s.userImg}>
-                            <img src={user.photos.small ? user.photos.small : imgSrc} alt={user.name}/>
+                            <NavLink to={`/profile/${user.id}`} >
+                                <img src={user.photos.small ? user.photos.small : imgSrc} alt={user.name}/>
+                            </NavLink>
                         </div>
                         <h3>{user.status ? user.status : `${user.name} пока без статуса`}</h3>
                         <div className={s.userButton}>

@@ -15,7 +15,8 @@ const initialState = {
     users: <UserFromData[]>[],
     totalCount: 0,
     pageSize: 10,
-    currentPage: 2
+    currentPage: 1,
+    isFetching: true,
 }
 
 type InitialState = typeof initialState
@@ -35,6 +36,9 @@ export const usersReducer = (state: InitialState = initialState, action: UsersAc
         }
         case 'SET_TOTAL_USERS_COUNT': {
             return {...state, totalCount: action.payload.totalCount};
+        }
+        case 'TOGGLE_FETCHING': {
+            return {...state, isFetching: action.payload.isFetching};
         }
         default:
             return state
@@ -59,13 +63,18 @@ export const setTotalUsersCountAC = (payload: {totalCount: number}) => {
     return {type: 'SET_TOTAL_USERS_COUNT', payload} as const
 }
 
+export const toggleFetchingAC = (payload: {isFetching: boolean}) => {
+    return {type: 'TOGGLE_FETCHING', payload} as const
+}
+
 export type FollowACType = ReturnType<typeof followAC>
 export type UnFollowACType = ReturnType<typeof unFollowAC>
 export type SetUsersACType = ReturnType<typeof setUsersAC>
 export type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
 export type SetTotalUsersCountACType = ReturnType<typeof setTotalUsersCountAC>
+export type ToggleFetchingACACType = ReturnType<typeof toggleFetchingAC>
 
-type UsersAction = FollowACType | UnFollowACType | SetUsersACType | SetCurrentPageACType | SetTotalUsersCountACType
+type UsersAction = FollowACType | UnFollowACType | SetUsersACType | SetCurrentPageACType | SetTotalUsersCountACType | ToggleFetchingACACType
 
 
 // const imgSrc = 'https://avatars.mds.yandex.net/i?id=39012a20de9d0577cc073dc266d44100_l-5278064-images-thumbs&n=13'

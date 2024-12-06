@@ -8,10 +8,9 @@ import {News} from "./layout/news/News";
 import {Settings} from "./layout/settings/Settings";
 import {Music} from "./layout/music/Music";
 import {DialogsContainer} from "./layout/dialogs/DialogsContainer";
-import {UsersContainer} from "./layout/users/UsersContainer";
+import {Users} from "./layout/users/Users";
 
-type AppProps = {
-}
+type AppProps = {}
 
 function App() {
     return (
@@ -21,9 +20,11 @@ function App() {
                 <Navbar/>
                 <main className="main">
                     <Routes>
-                        <Route path={'/profile'} element={<Profile/>}/>
+                        <Route path={'/profile'} element={<Profile/>}>
+                            <Route path={'/profile/:id'} element={<Profile/>}/>
+                        </Route>
                         <Route path={'/dialogs/*'} element={<DialogsContainer/>}/>
-                        <Route path={'/users'} element={<UsersContainer/>}/>
+                        <Route path={'/users'} element={<Users/>}/>
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
                         <Route path={'/settings'} element={<Settings/>}/>
